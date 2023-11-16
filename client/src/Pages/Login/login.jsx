@@ -12,8 +12,39 @@ import catchPhrase from '../../Images/catchPhrase.svg';
 import { GoogleLogin } from "@react-oauth/google";
 
 function Login() {
-  const clientId = process.env.CLIENT_ID;
+  const clientId = process.env.REACT_APP_CLIENT_ID;
   console.log(clientId);
+
+  // const onSuccess = (res) => {
+  //     console.log("Login Success! Current User: ", credentialResponse);
+  // }
+
+  // const onSuccess = async (credentialResponse) => {
+  //   const tokenId = credentialResponse.tokenId;
+  
+  //   try {
+  //     const response = await fetch("http://localhost:8000/api/google-authenticate", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({ tokenId }),
+  //     });
+  
+  //     const data = await response.json();
+  //     console.log(data);
+  
+  //     // Use the user data received from the backend as needed.
+  //   } catch (error) {
+  //     console.error('Error calling backend:', error);
+  //   }
+  // };
+
+  // const onFailure = (res) => {
+  //   console.log("Login Failed! Response: ", res);
+  // }
+
+
   return (
     <div className="loginBg">
       {/* <p>Login</p> */}
@@ -37,6 +68,8 @@ function Login() {
             onSuccess={(credentialResponse) => {
               console.log(credentialResponse);
             }}
+            // onSuccess={onSuccess}
+            // onFailure={onFailure}
             onError={() => {
               console.log("Login Failed");
             }}
