@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./post.css"
 
 
@@ -6,6 +6,7 @@ const Post = () => {
 
   const [setError] = useState(null);
   const [upload, setUpload] = useState({
+    profilePhoto: "",
     clientID: "",
     emailID: "",
     name: "",
@@ -14,6 +15,81 @@ const Post = () => {
     genre: "",
     content: "",
   });
+
+  // useEffect(() => {
+  //   fetchUserData();
+  // }, []);
+
+  // const fetchUserData = async () => {
+  //   try {
+  //     // Make a request to backend to get user data
+  //     const response = await fetch(`${process.env.REACT_APP_URL}/api/auth/google`);
+  //     console.log(response);
+  //     const userData = await response.json();
+
+  //     // Set user data in the state
+  //     setUpload((prevUpload) => ({
+  //       ...prevUpload,
+  //       clientID: userData.user_id,
+  //       emailID: userData.user_email,
+  //       name: userData.user_name,
+  //       profilePhoto: userData.user_picture,
+  //     }));
+  //     console.log(userData.user_id);
+  //   } catch (error) {
+  //     console.log("Error fetching user data:", error);
+  //   }
+  // };
+
+  useEffect(() => {
+    // Retrieve user data from local storage
+    const userData = JSON.parse(localStorage.getItem('user'));
+    if (userData) {
+      setUpload((prevUpload) => ({
+        ...prevUpload,
+        clientID: userData.user_id,
+        emailID: userData.user_email,
+        name: userData.user_name,
+        profilePhoto: userData.user_picture,
+      }));
+      console.log(userData.profilePhoto);
+    }
+  }, []);
+
+  const storedUser = localStorage.getItem('user');
+  const user = JSON.parse(storedUser);
+  console.log('User Profile Photo:', user.profilePhoto);
+  console.log('User  Photo:', user.picture);
+  console.log('User:', user);
+
+
+  // useEffect(() => {
+  //   // Retrieve user data from the backend
+  //   fetchUserData();
+  // }, []);
+  
+  // const fetchUserData = async () => {
+  //   try {
+  //     // Make a request to backend to get user data
+  //     const response = await fetch(`${process.env.REACT_APP_URL}/api/auth/google`);
+  //     const userData = await response.json();
+  
+  //     // Set user data in the state
+  //     setUpload((prevUpload) => ({
+  //       ...prevUpload,
+  //       clientID: userData.user_id,
+  //       emailID: userData.user_email,
+  //       name: userData.user_name,
+  //       profilePhoto: userData.user_picture,
+  //     }));
+  
+  //     // Store user data in local storage
+  //     localStorage.setItem('user', JSON.stringify(userData));
+  //   } catch (error) {
+  //     console.log("Error fetching user data:", error);
+  //   }
+  // };
+  
 
 
   const handleSubmit = async (e) => {
@@ -36,6 +112,7 @@ const Post = () => {
     if (response.ok) {
       setUpload({
         ...upload,
+        profilePhoto: "",
         clientID: "",
         emailID: "",
         name: "",
@@ -79,11 +156,11 @@ const Post = () => {
 
 
   return (
-    <div>
+    <div className="postDiv">
       <form className="formData" onSubmit={handleSubmit}>
         <div className="imageContainer">
           <label className="blogImage">
-              Descriptive image about blog 
+              <b>Click Here</b> to upload image for blog 
               <input
                 type="file"
                 accept="image/*"

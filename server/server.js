@@ -5,7 +5,7 @@ const cors = require('cors');
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 const postRoutes = require("./routes/blog");
-// const googleAuth = require("./routes/googleAuth");
+const googleAuth = require("./routes/googleAuth")
 
 
 
@@ -16,9 +16,8 @@ const app = express();
 //middleware
 app.use(express.json({ limit: "5mb" }));
 app.use(express.urlencoded({ limit: "5mb", extended: true }));
-
-app.use(express.json())
 app.use(cors());
+app.use(morgan("combined"));
 
 
 app.use((req, res, next) => {
@@ -31,6 +30,7 @@ app.use("/api/blog", postRoutes)
 
 // Include the postRoutes for handling the Google authentication
 // app.use("/api/google-authenticate", googleAuth);
+// app.use("/api/auth", googleAuth);
 
 //connect to db
 mongoose.connect(process.env.MONGO_URI)

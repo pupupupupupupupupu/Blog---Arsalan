@@ -9,6 +9,19 @@
     z-index: 10;
 }
 
+.navbarLink {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    max-width: 65vw;
+
+  }
+  
+  /* Add this style to handle the hover effect */
+  .navbarLink:hover {
+    text-decoration: none;
+    color: black;
+  }
+
 .appLogo {
     /* position: relative; */
     height: 9vh;
@@ -27,7 +40,7 @@
 }
 
 .search {
-    margin-top: 10px;
+    margin-top: 5px;
 }
 
 .buttons {

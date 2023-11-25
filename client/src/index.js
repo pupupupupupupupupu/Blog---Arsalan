@@ -18,16 +18,14 @@ root.render(
   // <GoogleOAuthProvider clientId={clientId}>
   <GoogleOAuthProvider clientId={"491726625407-3lafm9k3ogeg9599uvuvvumgq61m52rb.apps.googleusercontent.com"}>
     <BrowserRouter>
+      <Routes><Route path="/signin" element={<Signin />} /></Routes>
+        <Navbar />
       <Routes>
-        {/* <Route path="/" element={<Home />} /> */}
-        <Route path="/signin" element={<Signin />} />
-        <Route path="/" element={<Navbar />}>
-          <Route index element={<Home />} />
-          <Route path="/post" element={<Post />} />
-          <Route path="/myblogs" element={<MyBlogs />} />
-          <Route path="/aboutus" element={<AboutUs />} />
-          <Route path="*" element={<Error />} />
-        </Route>
+        <Route path="/" element={<Home />} />
+        <Route path="/post" element={<Post />} />
+        <Route path="/myblogs" element={<MyBlogs />} />
+        <Route path="/aboutus" element={<AboutUs />} />
+        <Route path="*" element={<Error />} />
       </Routes>
     </BrowserRouter>
   </GoogleOAuthProvider>

@@ -16,6 +16,7 @@ const getAllBlogs = async (req, res) => {
 //post a blog
 const createBlog = async (req, res) => {
     const {
+        profilePhoto,
         clientID,
         name,
         emailID,
@@ -33,6 +34,7 @@ const createBlog = async (req, res) => {
       });
   
       const blog = await Blog.create({
+        profilePhoto,
         clientID,
         name,
         emailID,
