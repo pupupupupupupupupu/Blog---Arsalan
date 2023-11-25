@@ -1,0 +1,22 @@
+.homepage {
+    z-index: 1;
+    background-color: #CBF3F0;
+    height: 100vh;
+    max-width: 100vw;
+    /* position: fixed; */
+    /* bottom: 0; */
+}
+
+.mainContainer {
+    z-index: 1;
+    background-color: white;
+    height: 100vh;
+    width: 85vw;
+    position:relative;
+    /* bottom: 0; */
+    /* right: 10%; */
+    left: 50%;
+    transform: translate(-50%, 0%);
+    /* display: flex; */
+    /* justify-content: center; */
+}
