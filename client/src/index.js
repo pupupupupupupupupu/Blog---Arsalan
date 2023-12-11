@@ -10,13 +10,19 @@ import AboutUs from "./Pages/AboutUs/aboutUs";
 import Post from "./Pages/Post/post.jsx";
 import Navbar from "./Components/Navbar/navbar.jsx"
 import MyBlogs from "./Pages/myBlogs/myBlogs.jsx"
+import { Auth0Provider } from "@auth0/auth0-react";
+
 
 // const clientId = process.env.REACT_APP_CLIENT_ID;
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   // <AppProvider>
   // <GoogleOAuthProvider clientId={clientId}>
-  <GoogleOAuthProvider clientId={"491726625407-3lafm9k3ogeg9599uvuvvumgq61m52rb.apps.googleusercontent.com"}>
+  <Auth0Provider
+  domain={process.env.REACT_APP_AUTH0_DOMAIN}
+  clientId={process.env.REACT_APP_AUTH0_CLIENT_ID}
+  authorizationParams={{ redirect_uri: window.location.origin }}
+>
     <BrowserRouter>
       <Routes><Route path="/signin" element={<Signin />} /></Routes>
         <Navbar />
@@ -28,6 +34,6 @@ root.render(
         <Route path="*" element={<Error />} />
       </Routes>
     </BrowserRouter>
-  </GoogleOAuthProvider>
+    </Auth0Provider>
   // </AppProvider>
 );
